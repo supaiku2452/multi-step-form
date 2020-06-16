@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "target": "es6",
+    "jsx": "react",
+    "lib": ["dom", "ES2020"]
+  }
+}
