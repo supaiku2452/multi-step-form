@@ -34,9 +34,9 @@ const FormTop = () => {
         <div>
           form value
           <ul>
-            <li>name: {state.name}</li>
-            <li>age : {state.age}</li>
-            <li>email : {state.email}</li>
+            <li>name: {state.value.name}</li>
+            <li>age : {state.value.age}</li>
+            <li>email : {state.value.email}</li>
           </ul>
         </div>
       </section>
@@ -67,7 +67,12 @@ const Name = () => {
     <div>
       <h2>Name</h2>
       <label htmlFor="name">Name</label>
-      <input name="name" value={state.name} onChange={onChange} />
+      <input name="name" value={state.value.name} onChange={onChange} />
+      {state?.error?.name && (
+        <label aria-label="alert" style={{ color: "red" }}>
+          error
+        </label>
+      )}
 
       <Link to="/form/age">next age</Link>
     </div>
@@ -85,7 +90,12 @@ const Age = () => {
     <div>
       <h2>Age</h2>
       <label htmlFor="age">age</label>
-      <input name="age" type="number" value={state.age} onChange={onChange} />
+      <input
+        name="age"
+        type="number"
+        value={state.value.age}
+        onChange={onChange}
+      />
 
       <Link to="/form/email">next email</Link>
     </div>
@@ -103,7 +113,7 @@ const Email = () => {
     <div>
       <h2>Email</h2>
       <label htmlFor="email">Email</label>
-      <input name="email" value={state.email} onChange={onChange} />
+      <input name="email" value={state.value.email} onChange={onChange} />
       <Link to="/">submit</Link>
     </div>
   );

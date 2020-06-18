@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useReducer,
-  useCallback,
-} from "react";
+import React, { createContext, useReducer } from "react";
 
 type FormValueType = {
   name: string;
@@ -11,14 +6,18 @@ type FormValueType = {
   email: string;
 };
 
-const initialValue: FormValueType = {
-  name: "",
-  age: 20,
-  email: "",
+const initialValue: FormType = {
+  value: { name: "", age: 20, email: "" },
+};
+
+type FormError = Partial<FormValueType>;
+type FormType = {
+  value: FormValueType;
+  error?: FormError;
 };
 
 type FormContextType = {
-  state: FormValueType;
+  state: FormType;
   dispatch: React.Dispatch<FormAction>;
 };
 
@@ -47,25 +46,31 @@ type FormEmail = {
   payload: string;
 };
 
-const formReducer = (
-  state: FormValueType,
-  action: FormAction
-): FormValueType => {
+const formReducer = (state: FormType, action: FormAction): FormType => {
   switch (action.type) {
     case "name":
       return {
         ...state,
-        name: action.payload,
+        value: {
+          ...state.value,
+          name: action.payload,
+        },
       };
     case "age":
       return {
         ...state,
-        age: action.payload,
+        value: {
+          ...state.value,
+          age: action.payload,
+        },
       };
     case "email":
       return {
         ...state,
-        email: action.payload,
+        value: {
+          ...state.value,
+          email: action.payload,
+        },
       };
     default:
       return state;
